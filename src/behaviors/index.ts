@@ -1,15 +1,8 @@
+import { Bot } from "mineflayer";
+import { State } from "../baseState";
 
-export * from './abstractBehaviorInventory'
-
-export * from './behaviorFollowEntity'
-export * from './behaviorIdle'
-export * from './behaviorLookAtEntity'
-export * from './behaviorPrintServerStats'
-export * from './behaviorMoveTo'
-export * from './behaviorGetClosestEntity'
-export * from './behaviorEquipItem'
-export * from './behaviorFindBlock'
-export * from './behaviorFindInteractPosition'
-export * from './behaviorMineBlock'
-export * from './behaviorInteractBlock'
-export * from './behaviorPlaceBlock'
+export class WildcardState extends State<any> {
+  constructor(bot: Bot, data: any) {
+    super(bot, data, "WildcardState");
+  }
+}
