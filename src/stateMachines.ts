@@ -2,19 +2,12 @@ import EventEmitter from "events";
 import { Bot } from "mineflayer";
 import { State } from "./baseState";
 import { Transition } from "./transition";
-import { EventMap } from "typed-emitter";
 import StrictEventEmitter from "strict-event-emitter-types";
-import { ExtractData } from "./util";
 
 export interface NestedMachineEvents {
   stateEntered: (oldBehavior: State<any>, data: any) => void;
   stateExited: (oldBehavior: State<any>, data: any) => void;
 }
-
-export type NSM<Data extends EventMap> = {
-  emit<Key extends keyof Data>(eventName: Key, ...args: Parameters<Data[Key]>): void;
-  on<Key extends keyof Data>(eventName: Key, listener: (...args: Parameters<Data[Key]>) => void): void;
-};
 
 
 export class NestedStateMachine<Data>
@@ -135,7 +128,5 @@ export class NestedStateMachine<Data>
     return this.exits.includes(this._activeState);
   }
 }
-
-export type NestedStateMachine1<Inp> = StrictEventEmitter<EventEmitter, Inp> & NestedStateMachine<Inp>;
 
 // export type NestedStateMachine1<Data extends EventMap> = NestedStateMachine<Data> & NSM<Data>;

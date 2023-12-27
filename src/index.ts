@@ -2,7 +2,7 @@ import { newMachine, newTransition } from "./builders";
 import { State } from "./baseState";
 import { WildcardState } from "./behaviors";
 import { ExtractData } from "./util";
-import { Transition } from "./transition";
+
 type Data1 = { hi: "hi" };
 type Data2 = { hi1: "hi1" };
 
