@@ -40,7 +40,7 @@ export function newTransition<
   });
 }
 
-export function newMachine<Data, Enter extends State<any>, Exits extends readonly State<Data>[]>(
+export function newMachine<Enter extends State<any>, Data extends ExtractData<Enter>, Exits extends readonly State<Data>[]>(
   name: string,
   bot: Bot,
   data: Data,
@@ -49,8 +49,7 @@ export function newMachine<Data, Enter extends State<any>, Exits extends readonl
   exits?: Exits
 ): NestedStateMachine<Data>;
 export function newMachine<
-    Data,
-  Enter extends State<Data>,
+Enter extends State<any>, Data extends ExtractData<Enter>, 
   Args extends OnEnterArgs<Enter>,
   Exits extends readonly State<Data>[]
 >(
@@ -63,16 +62,15 @@ export function newMachine<
   exits?: Exits
 ): NestedStateMachine<Data>;
 export function newMachine<
-Data,
-  Child extends State<Data>,
-  Args extends OnEnterArgs<Child>,
+Enter extends State<any>, Data extends ExtractData<Enter>, 
+  Args extends OnEnterArgs<Enter>,
   Exits extends readonly State<Data>[]
 >(
   name: string,
   bot: Bot,
   data: Data,
   transitions: Transition<Data>[],
-  enter: Child,
+  enter: Enter,
   enterArgs?: Args,
   exits?: Exits
 ): NestedStateMachine<Data> {
